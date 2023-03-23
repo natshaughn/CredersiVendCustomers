@@ -1,0 +1,620 @@
+{
+	"info": {
+		"_postman_id": "095a2b7c-f2fa-45b7-b538-7911ebc09416",
+		"name": "CredersiVendCustomers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22891165"
+	},
+	"item": [
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Query All Customers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "uuid",
+								"value": "7bd996ad-79f9-4197-ac33-8ef5181899af",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": {{$randomCompanyName}}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/domains/{{domainUuid}}/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"domains",
+								"{{domainUuid}}",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerDelete}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerDelete}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sites",
+			"item": [
+				{
+					"name": "Query All Sites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Site",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Site",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"address\": \"{{$randomStreetAddress}}\", \"name\": \"{{$randomCity}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Site",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "domains/{domainUuid}/customers/{{customerUuid}}/sites/{{siteDelete}}",
+							"host": [
+								"domains"
+							],
+							"path": [
+								"{domainUuid}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteDelete}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Machines",
+			"item": [
+				{
+					"name": "Complete Route",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/route",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"route"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Route",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/route/{{machineUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"route",
+								"{{machineUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Origin Machine",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/origin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"origin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Machine",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/machines/{{machineUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"machines",
+								"{{machineUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Machine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"directions\": \"Directions\", \"location\": \"Location\", \"name\": \"Name\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/origin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"origin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Route",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/route/{{machineDelete}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"route",
+								"{{machineDelete}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Domains",
+			"item": [
+				{
+					"name": "Query All Domains",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Domain",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/7bd996ad-79f9-4197-ac33-8ef5181899af",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"7bd996ad-79f9-4197-ac33-8ef5181899af"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Domain",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"{{$randomDomainName}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Domain",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainDelete}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainDelete}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY3OTQ5MjY5NiwiaWF0IjoxNjc5NDc0Njk2fQ.oAKvRm7aDS8RimstXXv7xEweZ2haujdO4F12BFqhhABMPfDKBwdGQK6wHW6ueBqIdrrQiL00BmkjcXirFe_QVg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "customerUuid",
+			"value": "a7082b2f-12eb-49d2-a0ea-03885d2f3691",
+			"type": "string"
+		},
+		{
+			"key": "customerDelete",
+			"value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			"type": "string"
+		},
+		{
+			"key": "siteUuid",
+			"value": "dc5e7463-c914-4507-b29f-87d9e2a59d88",
+			"type": "string"
+		},
+		{
+			"key": "siteDelete",
+			"value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			"type": "string"
+		},
+		{
+			"key": "machineUuid",
+			"value": "c61bd599-969c-4c95-9018-5b67286ca93b",
+			"type": "string"
+		},
+		{
+			"key": "machineDelete",
+			"value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			"type": "string"
+		},
+		{
+			"key": "domainUuid",
+			"value": "7bd996ad-79f9-4197-ac33-8ef5181899af",
+			"type": "string"
+		},
+		{
+			"key": "domainDelete",
+			"value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			"type": "string"
+		}
+	]
+}

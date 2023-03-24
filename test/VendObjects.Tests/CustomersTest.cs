@@ -1,6 +1,7 @@
 namespace VendObjects.Tests;
 
 using VendObjects;
+using VendDatabase;
 
 public class CustomersTest
 {
@@ -95,6 +96,48 @@ public class CustomersTest
         // {
         //     Assert.Pass();
         // }
+    }
+    
+    [Test]
+    public void removeAllCustomersTest()
+    {
+        Customers db = new Customers();
+
+        db.RemoveAll();
+        db.Add(db.Create(71, "Nathan"));
+        db.Add(db.Create(83, "Will"));
+        db.Add(db.Create(92, "Tommy"));
+        Assert.That(db.Count(), Is.EqualTo(3));
+
+        db.RemoveAll();
+        Assert.That(db.Count(), Is.EqualTo(0));
+    }
+
+    [Test]
+    public void addCustomerFunctionTest() 
+    {
+        Customers db = new Customers();
+
+        db.RemoveAll();
+        db.Add(db.Create(523, "Jack"));
+        db.Add(db.Create(642, "Jill"));
+        db.Add(db.Create(764, "Jebediah"));
+        
+        // newCustomer.RemoveAll();
+
+        Assert.That(db.Count(), Is.EqualTo(3));
+    }
+
+    [Test]
+    public void nextIdTest()
+    {
+        Customers db = new Customers();
+
+        db.RemoveAll();
+        db.Add(db.Create(3, "Frank"));
+
+        Assert.That(db.NextId(), Is.EqualTo(4));
+
     }
 
 }

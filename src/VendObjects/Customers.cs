@@ -106,6 +106,7 @@ public class Customer
     }
 }
 
+//NEW CLASS 
 public class Customers
 {
     private CustomersDatabase db = new CustomersDatabase();

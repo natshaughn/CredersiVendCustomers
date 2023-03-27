@@ -1,0 +1,1225 @@
+{
+	"info": {
+		"_postman_id": "fb88e049-71b4-41c8-ab49-03babb6a0d22",
+		"name": "CredersiVendCustomersTESTS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22891165"
+	},
+	"item": [
+		{
+			"name": "1stRun",
+			"item": [
+				{
+					"name": "Create Domain",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the name of the domain is SHOWCASE\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.equal(\"SHOWCASE\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"If the response is an Object\", function() {\r",
+									"    pm.response.to.be.an(\"Object\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"SHOWCASE\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2ndRun",
+			"item": [
+				{
+					"name": "Query All Domains",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the response contains 2 name values\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    let nameCount = 0;\r",
+									"    for (let i = 0; i < jsonData.length; i++) {\r",
+									"        if (jsonData[i].name) {\r",
+									"            nameCount++;\r",
+									"        }\r",
+									"    }\r",
+									"    \r",
+									"    pm.expect(nameCount).to.eql(2);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Domain",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the name of the domain is SHOWCASE\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.equal(\"SHOWCASE\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the name of the customer is RO_VR\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.equal(\"RO_VR\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"RO_VR\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3rdRun",
+			"item": [
+				{
+					"name": "Query All Customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the response contains 1 name value\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    let nameCount = 0;\r",
+									"    for (let i = 0; i < jsonData.length; i++) {\r",
+									"        if (jsonData[i].name) {\r",
+									"            nameCount++;\r",
+									"        }\r",
+									"    }\r",
+									"    \r",
+									"    pm.expect(nameCount).to.eql(1);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check UUID\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    for (let i = 0; i < jsonData.length; i++) {\r",
+									"        if (jsonData[i].uuid.includes(\"a7082bf-12eb-49d2-a0ea-03885d2f3691\")) {\r",
+									"            throw new Error(\"UUID found in jsonData\");\r",
+									"        }\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "uuid",
+								"value": "7bd996ad-79f9-4197-ac33-8ef5181899af",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the name of the customer is RO_VR\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.equal(\"RO_VR\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Site",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the name of the site is Roq HQ\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.equal(\"Roq HQ\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"If the address of the site is Assurance House, East Terrace, Euxton\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.address).to.equal(\"Assurance House, East Terrace, Euxton\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"address\": \"Assurance House, East Terrace, Euxton\", \"name\": \"Roq HQ\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4thRun",
+			"item": [
+				{
+					"name": "Query All Sites",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the response contains 1 name value\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    let nameCount = 0;\r",
+									"    for (let i = 0; i < jsonData.length; i++) {\r",
+									"        if (jsonData[i].name) {\r",
+									"            nameCount++;\r",
+									"        }\r",
+									"    }\r",
+									"    \r",
+									"    pm.expect(nameCount).to.eql(1);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Site",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the name of the site is Roq HQ\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.equal(\"Roq HQ\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"If the address of the site is Assurance House, East Terrace, Euxton\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.address).to.equal(\"Assurance House, East Terrace, Euxton\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Machine",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the location of the machine is Main Office\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.location).to.equal(\"Main Office\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"If the name of the machine is Origin\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.equal(\"Origin\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"directions\": \"Turn left, on the back wall\", \"location\": \"Main Office\", \"name\": \"Origin\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/origin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"origin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5th Run",
+			"item": [
+				{
+					"name": "Append Machine 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"directions\": \"First door, straight ahead\", \"location\": \"Conference Room\", \"name\": \"Append 1\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/route/{{machineUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"route",
+								"{{machineUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Append Machine 2",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"directions\": \"Left wall, by the fridge\", \"location\": \"Canteen\", \"name\": \"Append 2\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/route/{{machineUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"route",
+								"{{machineUuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6thRun",
+			"item": [
+				{
+					"name": "Complete Route",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the response contains 3 name values\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"\r",
+									"    let nameCount = 0;\r",
+									"    for (let i = 0; i < jsonData.length; i++) {\r",
+									"        const node = jsonData[i].node;\r",
+									"        if (node && node.name) {\r",
+									"            nameCount++;\r",
+									"        }\r",
+									"    }\r",
+									"\r",
+									"    pm.expect(nameCount).to.eql(3);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/route",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"route"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Route",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response should contain a single null value\", function () {\r",
+									"  const jsonData = pm.response.json();\r",
+									"  pm.expect(jsonData[0]).to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/route/{{appendUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"route",
+								"{{appendUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Origin Machine",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the location of the machine is Main Office\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.location).to.equal(\"Main Office\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"If the name of the machine is Origin\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.equal(\"Origin\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/origin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"origin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Machine",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response headers contain expected data\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Date\")).to.contain(\"Mon, 27 Mar 2023\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/machines/{{machineUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"machines",
+								"{{machineUuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DeleteRequests",
+			"item": [
+				{
+					"name": "Delete Route",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the respone has status OK\", function() {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/route/{{routeDelete}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"route",
+								"{{routeDelete}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Origin Machine After Deletion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the respone has status 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/origin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"origin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Append Machine After Deletion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the respone has status 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}/machines/{{appendUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}",
+								"machines",
+								"{{appendUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Site",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the respone has status OK\", function() {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteDelete}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteDelete}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Site After Deletion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the respone has status 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}/sites/{{siteUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}",
+								"sites",
+								"{{siteUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the respone has status OK\", function() {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerDelete}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerDelete}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Customer After Deletion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the respone has status 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}/customers/{{customerUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}",
+								"customers",
+								"{{customerUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Domain",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the respone has status OK\", function() {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainDelete}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainDelete}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Single Domain After Deletion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"If the respone has status 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/domains/{{domainUuid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"domains",
+								"{{domainUuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY3OTkyMzU0OSwiaWF0IjoxNjc5OTA1NTQ5fQ.Vx42bAd8-3vPJ5nYEe-YOL9ZzeC2FfnFpex8ElJra7MTBHUXr_0hYNKDnAnowcwkYz8FIS9R4oK0RJQV8PcoQA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "domainUuid",
+			"value": "7bd996ad-79f9-4197-ac33-8ef5181899af",
+			"type": "string"
+		},
+		{
+			"key": "customerUuid",
+			"value": "a7082b2f-12eb-49d2-a0ea-03885d2f3691",
+			"type": "string"
+		},
+		{
+			"key": "siteUuid",
+			"value": "dc5e7463-c914-4507-b29f-87d9e2a59d88",
+			"type": "string"
+		},
+		{
+			"key": "machineUuid",
+			"value": "c61bd599-969c-4c95-9018-5b67286ca93b",
+			"type": "string"
+		},
+		{
+			"key": "appendUuid",
+			"value": "44677775-9613-4a27-afed-adf8a98471b9",
+			"type": "string"
+		},
+		{
+			"key": "domainDelete",
+			"value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			"type": "string"
+		},
+		{
+			"key": "customerDelete",
+			"value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			"type": "string"
+		},
+		{
+			"key": "siteDelete",
+			"value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			"type": "string"
+		},
+		{
+			"key": "routeDelete",
+			"value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			"type": "string"
+		}
+	]
+}
